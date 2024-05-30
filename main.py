@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 
 print("Bienvenue sur le site de connexion")
 mot_de_passe = "peniel123"
