@@ -19,7 +19,7 @@ body
 
 body, #skel-panels-pageWrapper
 {
-	background: #101214 url(images/main-bg.png) repeat;
+	background: #101214 url(images/main-bg.png) no-repeat;
 }
 
 h1, h2, h3 {
