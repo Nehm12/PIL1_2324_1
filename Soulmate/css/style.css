@@ -919,7 +919,76 @@ a:hover
 
 
 
-
+@media screen and (max-width: 768px) {
+  #footer {
+    padding: 3em 0;
+  }
+}
+#footer h2, #footer h3, #footer h4 {
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+#footer h3 {
+  font-size: 16px;
+}
+#footer [class*="col"] {
+  padding-bottom: 30px;
+}
+#footer .btn {
+  color: #fff;
+}
+#footer .float {
+  float: left;
+  margin-right: 10%;
+}
+#footer ul {
+  padding: 0;
+  margin: 0;
+}
+#footer ul li {
+  padding: 0;
+  margin: 0 0 10px 0;
+  list-style: none;
+}
+#footer ul li a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none !important;
+}
+#footer ul li a:hover {
+  color: #fff;
+}
+#footer .fh5co-social li {
+  display: block !important;
+}
+#footer .fh5co-social li a {
+  font-size: 16px;
+}
+#footer .fh5co-social li i {
+  float: left;
+  font-size: 20px;
+  width: 40px;
+}
+#footer .fh5co-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px !important;
+  padding: 3em;
+  width: 100%;
+  float: left;
+}
+#footer .fh5co-copyright span {
+  display: block;
+}
+#footer .fh5co-copyright span a {
+  color: rgba(255, 255, 255, 0.8);
+}
+@media screen and (max-width: 480px) {
+  #footer .fh5co-copyright {
+    text-align: left !important;
+  }
+  #footer .fh5co-copyright span {
+    display: inline;
+  }
+}
 
 
 
