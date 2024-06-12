@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #ff7eb9, #ff65a3);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,15 +24,27 @@
             text-align: center;
         }
 
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            height: 40px;
+        }
+
         h1 {
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         label {
             display: block;
-            margin: 15px 0 5px;
+            margin: 10px 0 5px;
             color: #555;
+            text-align: left;
         }
 
         input[type="text"] {
@@ -41,6 +53,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
+            margin-bottom: 10px;
         }
 
         .button {
@@ -61,7 +74,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Vos Intérêts</h1>
+        <div class="header">
+            <img src="logo.png" alt="Logo">
+            <h1>Vos Intérêts</h1>
+        </div>
         <form>
             <label for="interet1">Intérêt 1</label>
             <input type="text" id="interet1" name="interet1">
@@ -71,6 +87,27 @@
 
             <label for="interet3">Intérêt 3</label>
             <input type="text" id="interet3" name="interet3">
+
+            <label for="interet4">Intérêt 4</label>
+            <input type="text" id="interet4" name="interet4">
+
+            <label for="interet5">Intérêt 5</label>
+            <input type="text" id="interet5" name="interet5">
+
+            <label for="interet6">Intérêt 6</label>
+            <input type="text" id="interet6" name="interet6">
+
+            <label for="interet7">Intérêt 7</label>
+            <input type="text" id="interet7" name="interet7">
+
+            <label for="interet8">Intérêt 8</label>
+            <input type="text" id="interet8" name="interet8">
+
+            <label for="interet9">Intérêt 9</label>
+            <input type="text" id="interet9" name="interet9">
+
+            <label for="interet10">Intérêt 10</label>
+            <input type="text" id="interet10" name="interet10">
 
             <button type="submit" class="button">Soumettre</button>
         </form>
