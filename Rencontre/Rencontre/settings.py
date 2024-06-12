@@ -44,8 +44,11 @@ INSTALLED_APPS = [
 =======
     'Chat',
     'Notification',
+<<<<<<< HEAD
     'Profils',
 >>>>>>> 6c8e732 (oklm)
+=======
+>>>>>>> 7c4bed9 (ok)
     'Suggest',
 ]
 
