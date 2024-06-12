@@ -1,22 +1,51 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    // Like button functionality
-    const likeButtons = document.querySelectorAll('.like');
-    likeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            alert('You liked this profile!');
-        });
+    const profiles = [
+        {
+            img: 'user1.jpg',
+            name: 'Jane Doe',
+            age: 25,
+            interests: 'Traveling, Cooking, Reading'
+        },
+        {
+            img: 'user2.jpg',
+            name: 'John Smith',
+            age: 30,
+            interests: 'Hiking, Music, Gaming'
+        },
+        {
+            img: 'user3.jpg',
+            name: 'Emily Johnson',
+            age: 28,
+            interests: 'Fitness, Art, Cooking'
+        }
+    ];
+
+    let currentProfileIndex = 0;
+
+    function displayProfile(index) {
+        const profile = profiles[index];
+        document.getElementById('profileImage').src = profile.img;
+        document.getElementById('userName').textContent = `${profile.name}, ${profile.age}`;
+        document.getElementById('userInterests').textContent = `Likes: ${profile.interests}`;
+    }
+
+    displayProfile(currentProfileIndex);
+
+    const likeButton = document.querySelector('.like');
+    const dislikeButton = document.querySelector('.dislike');
+
+    likeButton.addEventListener('click', function () {
+        alert('You liked this profile!');
+        currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+        displayProfile(currentProfileIndex);
     });
 
-    // Dislike button functionality
-    const dislikeButtons = document.querySelectorAll('.dislike');
-    dislikeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            alert('You disliked this profile.');
-        });
+    dislikeButton.addEventListener('click', function () {
+        alert('You disliked this profile.');
+        currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+        displayProfile(currentProfileIndex);
     });
 
-    // Send message functionality
     const sendButton = document.querySelector('.send');
     sendButton.addEventListener('click', function () {
         const input = document.querySelector('.chat-input input');
@@ -32,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Save profile changes
     const profileForm = document.querySelector('.profile-settings');
     profileForm.addEventListener('submit', function (event) {
         event.preventDefault();
