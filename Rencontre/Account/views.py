@@ -76,33 +76,6 @@ def acceuil(request):
 
 
 
-# def suggest_users(request):
-#     user_profile = Profile.objects.get(user=request.user)
-    
-#     # Récupérer les intérêts de l'utilisateur connecté
-#     user_interests = user_profile.interests.all()
-
-#     # Récupérer les critères des intérêts
-#     genders = user_interests.values_list('gender', flat=True)
-#     # if user_profile.sexe == 'F':
-#     #      genders='M'
-#     # else:
-#     #     genders='F'
-    
-#     min_age = user_interests.aggregate(Min('min_age'))['min_age__min']
-#     max_age = user_interests.aggregate(Max('max_age'))['max_age__max']
-#     location = user_profile.location
-#     sexe= user_profile.sexe
-#     # Rechercher les profils correspondant aux critères
-#     suggested_profiles = Profile.objects.filter(
-#         age__gte=min_age,
-#         age__lte=max_age,
-#         # location=location, 
-#         interests__gender__in=sexe 
-#     ).exclude(user=user_profile.user).distinct()
-
-#     return render(request, 'sugest.html', {'suggested_profiles': suggested_profiles})
-
 
 def rt(request):
     return redirect(reverse('user_list'))

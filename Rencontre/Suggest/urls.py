@@ -8,7 +8,7 @@ from . import views
 
 urlpatterns = [
     path('', views.suggest_users, name='sugs'),
-    path('suggestions/', views.suggest_users, name='suggest_users'),
+    path('sugest/', views.suggest_users, name='suggest_users'),
     path('search/',views.search_user, name='sea'),
     # path('salle/<str:username>',views.room, name='salle')
     

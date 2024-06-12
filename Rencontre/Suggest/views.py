@@ -1,38 +1,3 @@
-# from django.shortcuts import render
-# from django.shortcuts import render, redirect
-# # from .forms import UserForm, ProfileForm, InterestForm
-# from django.contrib.auth import login
-# # from django.contrib.auth.models import User
-# # from django.core.paginator import Paginator
-# from Account.models import Interest, Profile
-# from django.db.models import Min, Max 
-# # Create your views here.
-# def suggest_users(request):
-#     user_profile = Profile.objects.get(user=request.user)
-    
-#     # Récupérer les intérêts de l'utilisateur connecté
-#     user_interests = user_profile.interests.all()
-
-#     # Récupérer les critères des intérêts
-#     genders = user_interests.values_list('gender', flat=True)
-#     # if user_profile.sexe == 'F':
-#     #      genders='M'
-#     # else:
-#     #     genders='F'
-    
-#     min_age = user_interests.aggregate(Min('min_age'))['min_age__min']
-#     max_age = user_interests.aggregate(Max('max_age'))['max_age__max']
-#     location = user_profile.location
-#     sexe= user_profile.sexe
-#     # Rechercher les profils correspondant aux critères
-#     suggested_profiles = Profile.objects.filter(
-#         age__gte=min_age,
-#         age__lte=max_age,
-#         # location=location, 
-#         interests__gender__in=sexe 
-#     ).exclude(user=user_profile.user).distinct()
-
-#     return render(request, 'sugest.html', {'suggested_profiles': suggested_profiles})
 
 # views.py
 from django.contrib.auth.models import User
@@ -89,35 +54,7 @@ def suggest_users(request):
 
 
 
-# def search_user(request):
-#     search = request.GET.get('search', '')
-#     us = User.objects.filter(username__icontains=search)
-#     paginator = Paginator(us, 3)
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-    
-#     context = {
-#         'us': page_obj
-#     }
-#     return render(request, 'search.html', context)
-
-# views.py
-
-
-# @login_required
-# def search_user(request):
-#     search = request.GET.get('search', '')
-#     us = User.objects.filter(username__icontains=search)
-    
-#     context = {
-#         'us': us,
-#         'search': search,
-#     }
-#     return render(request, 'search.html', context)
-
-
-# views.py
-
+#
 
 @login_required
 def search_user(request):

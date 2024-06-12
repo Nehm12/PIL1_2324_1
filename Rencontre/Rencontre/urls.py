@@ -21,7 +21,6 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # Grapelli URLS
     path("admin/", admin.site.urls),
     path('', include('Account.urls')),
-    # path('SOULchat/', include('SOULchat.urls')),
     path('Suggest/', include('Suggest.urls')),
     path('chat/', include('chat.urls')),
     
