@@ -5,17 +5,7 @@ body {
   font-size: 16px;
   color: #848484;
   background-color: #f0f0f0;
-}
-body.style-2 {
-  background-color: #ffffff;
-  background-size: cover;
-  background-position: -30% center;
-  background-repeat: no-repeat;
   background-image: url(images/bg2.jpg);
-  height: 100%;
-}
-body.style-3 {
-  background: #ffffff url(images/geomet.jpg) repeat;
 }
 
 a {
