@@ -16,11 +16,11 @@ body.style-2 {
   background-size: cover;
   background-position: -30% center;
   background-repeat: no-repeat;
-  background-image: url(../images/bg_2.jpg);
+  background-image: url(images/bg_2.jpg);
   height: 100%;
 }
 body.style-3 {
-  background: #ffffff url(../images/geometry2.png) repeat;
+  background: #ffffff url(images/geometry2.png) repeat;
 }
 
 a {
