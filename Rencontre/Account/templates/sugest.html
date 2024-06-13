@@ -1,0 +1,38 @@
+{% comment %} <!-- templates/suggestions.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suggestions</title>
+</head>
+<body>
+    <h1>Profils Suggérés</h1>
+    {{profiles}}
+    {{interests}}
+    {{data}}
+    <ul>
+        {{suggested_profiles}}
+        {% for profile in suggested_profiles %}
+            <li>{{ profile.user.username }} - {{ profile.age }} ans - {{ profile.location }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suggestions de profils</title>
+</head>
+<body>
+    <h1>Suggestions de profils</h1>
+    {% if suggested_profiles %}
+        <ul>
+            {% for profile in suggested_profiles %}
+                <li>{{ profile.user.username }} - {{ profile.age }} ans - {{ profile.location }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun profil correspondant trouvé.</p>
+    {% endif %}
+</body>
+</html>
