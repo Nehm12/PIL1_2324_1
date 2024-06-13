@@ -35,13 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const dislikeButton = document.querySelector('.dislike');
 
     likeButton.addEventListener('click', function () {
-        alert('You liked this profile!');
         currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
         displayProfile(currentProfileIndex);
+        window.location.href = 'chat.html';
     });
 
     dislikeButton.addEventListener('click', function () {
-        alert('You disliked this profile.');
         currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
         displayProfile(currentProfileIndex);
     });
@@ -65,5 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
     profileForm.addEventListener('submit', function (event) {
         event.preventDefault();
         alert('Profile changes saved!');
+    });
+
+    document.getElementById('profileCard').addEventListener('click', function () {
+        window.location.href = 'chat.html';
     });
 });
