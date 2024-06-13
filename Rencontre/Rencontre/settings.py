@@ -59,12 +59,16 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'DIRS': ['Templates'],
 =======
         'DIRS': [
             BASE_DIR / 'templates'
             ],
 >>>>>>> origin/second
+=======
+        'DIRS': ['Templates'],
+>>>>>>> 7c4bed9 (ok)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
