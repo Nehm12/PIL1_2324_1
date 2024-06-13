@@ -38,8 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Account',
+<<<<<<< HEAD
     'SOULchat',
     'Notification',
+=======
+    'Chat',
+    'Notification',
+<<<<<<< HEAD
+    'Profils',
+>>>>>>> 6c8e732 (oklm)
+=======
+>>>>>>> 7c4bed9 (ok)
     'Suggest',
 ]
 
