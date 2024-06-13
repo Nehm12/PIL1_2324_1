@@ -1,5 +1,5 @@
-CREATE DATABASE if not exists rqt;
-USE rqt;
+CREATE DATABASE if not exists reqt;
+USE reqt;
 
 CREATE TABLE if not exists User (
     id INT,
