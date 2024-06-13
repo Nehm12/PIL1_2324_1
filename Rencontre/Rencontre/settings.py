@@ -58,7 +58,13 @@ ROOT_URLCONF = 'Rencontre.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': ['Templates'],
+=======
+        'DIRS': [
+            BASE_DIR / 'templates'
+            ],
+>>>>>>> origin/second
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,6 +85,7 @@ WSGI_APPLICATION = 'Rencontre.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+<<<<<<< HEAD
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rqt',
@@ -86,6 +93,14 @@ DATABASES = {
         'PASSWORD': '18junior',
         'HOST': 'localhost',  # ou l'adresse IP de votre serveur MySQL
         'PORT': '3306',       # port MySQL par défaut
+=======
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'reqt',
+        'HOST':'',
+        'PORT':'3306',
+        'PASSWORD':'2005'
+>>>>>>> origin/second
     }
 }
 
