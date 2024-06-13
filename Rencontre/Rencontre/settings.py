@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Account',
-    'chat',
+    'SOULchat',
     'Notification',
     'Suggest',
 ]
@@ -74,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Rencontre.wsgi.application'
+
 
 
 # Database
