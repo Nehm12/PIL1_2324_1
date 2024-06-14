@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Page de Connexion</title>
+</head>
+<body>
+    <style>
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color:  linear-gradient( #ffffff, #ff69b4, #ff0000);
+    
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:  rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+.continue-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ccc;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Autres styles (cases arrondies, italique, etc.) */
+
+    </style>  
+    <div class="container">
+        <h1><strong>Parle nous un peu de toi</strong></h1>
+        <p>Aides ton potentiel crush à savoir qui tu es et ce que tu recherches</p>
+        <form action="profile.html" method="post">
+            <label for="email">Adresse email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <!-- Autres champs (nom d'utilisateur, sexe, orientation sexuelle, etc.) -->
+
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="gender">Sexe :</label>
+            <select id="gender" name="gender">
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+                <option value="autre">Autre</option>
+            </select>
+
+            <label for="orientation">Orientation sexuelle :</label>
+            <select id="orientation" name="orientation">
+                <option value="hetero">Hétérosexuel</option>
+                <option value="homosexuel">Homosexuel</option>
+                <option value="asexuel">Asexuel</option>
+                <option value="bisexuel">Bisexuel</option>
+                <option value="pansexuel">Pansexuel</option>
+                <option value="queer">Queer</option>
+            </select>
+
+            <label for="birthYear">Année de naissance :</label>
+            <select id="birthYear" name="birthYear">
+                <!-- Ajoutez les années de 1900 à 2006 ici -->
+                <option value="1900">1900</option>
+                <option value="1901">1901</option>
+                <option value="1902">1902</option>
+                <!-- ... -->
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+                <option value="2005">2005</option>
+                <option value="2006">2006</option>                                                                                                      
+            </select>
+
+            <label for="country">Pays d'origine :</label>
+            <select id="country" name="country">
+                <!-- Ajoutez tous les pays du monde ici -->
+            </select>
+
+            <label for="maritalStatus">Situation matrimoniale :</label>
+            <select id="maritalStatus" name="maritalStatus">
+                <option value="celibataire">Célibataire</option>
+                <option value="marie">Marié(e)</option>
+                <option value="veuf">Veuf(ve)</option>
+                <option value="divorce">Divorcé(e)</option>
+            </select>
+
+
+            <button type="submit" class="continue-button">Continuer</button>
+        </form>
+    </div>
+</body>
+</html>
