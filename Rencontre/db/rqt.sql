@@ -271,6 +271,40 @@ UNLOCK TABLES;
 
 --
 -- Table structure for table `django_session`
+
+CREATE TABLE if not exists users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_u VARCHAR(255) NOT NULL,
+    date_joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_login TIMESTAMP
+);
+
+CREATE TABLE if not exists user_profiles (
+    user_id INTEGER UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+    gender VARCHAR(20),
+    sexual_orientation VARCHAR(50),
+    birth_year INTEGER,
+    country_of_origin VARCHAR(100),
+    marital_status VARCHAR(50)
+);
+
+CREATE TABLE user_interests (
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    interest VARCHAR(500000)
+);
+
+
+
+
+
+
+
+
+
+
+
 --
 
 DROP TABLE IF EXISTS `django_session`;

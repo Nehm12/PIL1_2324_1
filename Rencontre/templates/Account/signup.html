@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sign up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <style>
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">SOULMATE</div>
+    
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                
+                <!-- Start Sign In Form -->
+                <form action="index.html" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+                    <h2>Sign Up</h2>
+                    <div class="form-group">
+                        <div class="alert alert-success" role="alert">Your info has been saved.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="sr-only">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="re-password" class="sr-only">Re-type Password</label>
+                        <input type="password" class="form-control" id="re-password" placeholder="Re-type Password" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                    <label for="gender">Sexe :</label>
+                    <select id="gender" name="gender">
+                        <option value="homme">Homme</option>
+                        <option value="femme">Femme</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="orientation">Orientation sexuelle :</label>
+                    <select id="orientation" name="orientation">
+                        <option value="hetero">Hétérosexuel</option>
+                        <option value="homosexuel">Homosexuel</option>
+                        <option value="asexuel">Asexuel</option>
+                        <option value="bisexuel">Bisexuel</option>
+                        <option value="pansexuel">Pansexuel</option>
+                        <option value="queer">Queer</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="birthYear">Année de naissance :</label>
+                    <select id="birthYear" name="birthYear">
+                        <!-- Ajoutez les années de 1900 à 2006 ici -->
+                        <option value="1900">1900</option>
+                        <option value="1901">1901</option>
+                        <option value="1902">1902</option>
+                        <!-- ... -->
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>                                                                                                      
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="country">Pays d'origine :</label>
+                    <select id="country" name="country">
+                        <!-- Ajoutez tous les pays du monde ici -->
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="maritalStatus">Situation matrimoniale :</label>
+                    <select id="maritalStatus" name="maritalStatus">
+                        <option value="celibataire">Célibataire</option>
+                        <option value="marie">Marié(e)</option>
+                        <option value="veuf">Veuf(ve)</option>
+                        <option value="divorce">Divorcé(e)</option>
+                    </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remember"><input type="checkbox" id="remember"> Remember Me</label>
+                    </div>
+                    <div class="form-group">
+                        <p>Already registered? <a href="index.html">Sign In</a></p>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Sign Up" class="btn btn-danger">
+                    </div>
+                </form>
+                <!-- END Sign In Form -->
+
+            </div>
+        </div>
+        <div class="fh5co-copyright text-center">
+            <p>&copy; Our Project. All Rights Reserved. 
+                <span>Designed <i class="icon-heart"></i> 
+                    by <a href="https://github.com/Nehm12/PIL1_2324_1" 
+                    target="_blank">Groupe 1.co</a>
+                    </span></p>	
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Placeholder -->
+    <script src="js/jquery.placeholder.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
