@@ -2,14 +2,19 @@
 from django.contrib import admin
 from django.urls import include, path
 from Account import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),  
-    path('blog/', include('acceuil.urls')),
-    path('contact/', include('acceuil.urls')),
-    path('about/', include('acceuil.urls')),
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.login_view, name='login'),
-    # assuming you have a home view
+    path('admin/', admin.site.urls), 
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('blog/', TemplateView.as_view(template_name='blog.html'), name='blog'),
+    path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    # Ajouter d'autres URLs ici si nécessaire
+
 ]
+
+
+
+
+
