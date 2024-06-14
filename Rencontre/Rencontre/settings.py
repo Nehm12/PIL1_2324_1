@@ -130,7 +130,7 @@ STATIC_URL = '/static/'
 
 # Ajouter les chemins vers les dossiers statiques de votre application
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'Account/static'),
+    os.path.join(BASE_DIR, 'acceuil/templates/static'),
 ]
 
 # Configurer les dossiers où collecter les fichiers statiques pour la production
