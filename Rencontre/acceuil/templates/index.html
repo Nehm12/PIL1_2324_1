@@ -34,12 +34,17 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- Modernizr JS -->
-    <script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="{% static 'js/respond.min.js' %}"></script>
-    <![endif]-->
+<style>
+    .fh5co-cover{
+        background-image: url("{% static 'images/fd.jpg' %}") ;
+    }
+    .half-inner{
+        background-image: url("{% static 'images/pers1.jpg' %}");
+    }
+    .half-inner+.half-inner2{  
+        background-image: url("{% static 'images/pers2.jpg' %}");
+    } 
+</style>
 
 </head>
 <body>
@@ -50,7 +55,7 @@
                     <div class="container">
                         <div class="nav-header">
                             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-                            <h1 id="fh5co-logo"><a href="index.html">SOULMATE</a></h1>
+                            <h1 id="fh5co-logo"><a href="{% url 'home' %}">SOULMATE</a></h1>
                             <!-- START #fh5co-menu-wrap -->
                             <nav id="fh5co-menu-wrap" role="navigation">
                                 <ul class="sf-menu" id="fh5co-primary-menu">
@@ -67,11 +72,11 @@
 
             <div class="fh5co-hero">
                 <div class="fh5co-overlay"></div>
-                <div class="fh5co-cover text-center" image-fluid data-stellar-background-ratio="0.5" background-image: url({% static 'images/fd.jpg' %});>
+                <div class="fh5co-cover text-center" image-fluid data-stellar-background-ratio="0.5">
                     <div class="desc animate-box">
                         <h2>Find a Date Anywhere</h2>
                         <p>
-                            <a class="btn btn-primary btn-lg btn-learn" href="{% static 'home/cypher07/Documents/PIL1_2324_1/Rencontre/Templates/Pageform/sign-up.html' %}">Sign Up</a>
+                            <a class="btn btn-primary btn-lg btn-learn" href="{% url 'signup'  %}">Sign Up</a>
                             <a class="btn btn-primary btn-lg popup-vimeo btn-video" href="{% static 'images/Impre.mp4' %}"><i class="icon-play"></i> Watch Video</a>
                         </p>
                     </div>
@@ -119,7 +124,7 @@
                         <div class="col-md-12 work">
                             <div class="row">
                                 <div class="col-md-6 col-md-pull-2">
-                                    <div class="half-inner" background-image: url({% static 'images/pers1.jpg' %});>
+                                    <div class="half-inner">
                                     </div>
                                 </div>
                                 <div class="col-md-6 animate-box">
@@ -134,7 +139,7 @@
                         <div class="col-md-12 work">
                             <div class="row">
                                 <div class="col-md-6 col-md-push-6">
-                                    <div class="half-inner half-inner2" background-image: url({% static 'images/pers2.jpg' %});>
+                                    <div class="half-inner half-inner2">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-md-pull-6 animate-box">

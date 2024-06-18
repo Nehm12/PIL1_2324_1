@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'Suggest',
 ]
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'Rencontre.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +132,10 @@ STATIC_URL = '/static/'
 
 # Ajouter les chemins vers les dossiers statiques de votre application
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'acceuil/templates/static'),
+
+    os.path.join(BASE_DIR, "Rencontre/Account/static"),
+    os.path.join(BASE_DIR, "Rencontre/accueil/static"),
+
 ]
 
 # Configurer les dossiers où collecter les fichiers statiques pour la production
