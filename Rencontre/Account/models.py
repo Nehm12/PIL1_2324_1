@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
@@ -41,22 +42,34 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.username
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=20, blank=True, null=True)
-    sexual_orientation = models.CharField(max_length=50, blank=True, null=True)
-    birth_year = models.IntegerField(blank=True, null=True)
-    country_of_origin = models.CharField(max_length=100, blank=True, null=True)
-    marital_status = models.CharField(max_length=50, blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username
+    gender = models.CharField(max_length=10, choices=[
+        ('homme', 'Homme'),
+        ('femme', 'Femme'),
+        ('autre', 'Autre'),
+    ])
+    orientation = models.CharField(max_length=20, choices=[
+        ('hetero', 'Hétérosexuel'),
+        ('homosexuel', 'Homosexuel'),
+        ('asexuel', 'Asexuel'),
+        ('bisexuel', 'Bisexuel'),
+        ('pansexuel', 'Pansexuel'),
+        ('queer', 'Queer'),
+    ])
+    birth_year = models.IntegerField()
+    country = models.CharField(max_length=100)
+    marital_status = models.CharField(max_length=15, choices=[
+        ('celibataire', 'Célibataire'),
+        ('marie', 'Marié(e)'),
+        ('veuf', 'Veuf(ve)'),
+        ('divorce', 'Divorcé(e)'),
+    ])
 
 class UserInterest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    interest = models.TextField()
+    interest = models.CharField(max_length=100)  # Champ pour stocker l'intérêt sélectionné
 
     def __str__(self):
-        return f"{self.user.username} - {self.interest[:20]}"
+        return f'{self.user.username} - {self.interest}'
 

@@ -39,13 +39,14 @@
                     
                     <!-- Start Sign In Form -->
                     <form action="{% url 'signup' %}" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
-                        <h2>Sign Up</h2>
                         {% csrf_token %}
-                        {{ form.as_p }}
-                       
+                        <h2>Sign Up</h2>
                         <div class="form-group">
                             <div class="alert alert-success" role="alert">Your info has been saved.</div>
                         </div>
+                        {{ form.as_p }}
+                       
+                       
                         
                         <div class="form-group">
                             <input type="submit" value="Sign Up" class="btn btn-danger">

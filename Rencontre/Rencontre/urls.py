@@ -10,7 +10,8 @@ urlpatterns = [
     path('blog/', TemplateView.as_view(template_name='blog.html'), name='blog'),
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
-    path('Account/', include('Account.urls')),
+    path('', include('Account.urls')),
+    path('Account/', include('django.contrib.auth.urls')),
 
     # Ajouter d'autres URLs ici si nécessaire
 
