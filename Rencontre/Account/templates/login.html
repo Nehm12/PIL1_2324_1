@@ -1,93 +1,120 @@
-{%load static%}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Log In</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <title> login </title>
+</head>
+<body>
+    <h3>login</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% csrf_token %}
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html> {% endcomment %}
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <!-- Modernizr JS -->
-    <script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Login</title>
     <style>
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        body {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        .header h1 {
             font-size: 1.5em;
+            color: #fff;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            margin-top: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: #333;
-            font-weight: bold;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form {
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .help-text {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-
+    <div class="header">
+        <h1>SOULMATE</h1>
+    </div>
     <div class="container">
-        <div class="row">
-
-            <div class="logo">SOULMATE</div>
-
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <!-- Start Sign In Form -->
-                <form method="post"  class="fh5co-form animate-box" data-animate-effect="fadeIn">
-                    <h2>Log In</h2>
-                    {% csrf_token %}
-                    {{ form.as_p }}
+        <h3>Login</h3>
+        <div class="row justify-content-center">
+            <form action="" method="post" class="col-md-12">
+                {% csrf_token %}
+                {% for field in form %}
                     <div class="form-group">
-                        <p>Not registered? <a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-danger">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-                <!-- END Sign In Form -->
-
-            </div>
-        </div>
-        <div class="fh5co-copyright text-center">
-            <p>&copy; Our Project. All Rights Reserved. 
-                <span>Designed <i class="icon-heart"></i> 
-                    by <a href="https://github.com/Nehm12/PIL1_2324_1" 
-                    target="_blank">Groupe 1.co</a>
-                    </span></p>	
+                {% endfor %}
+                <input type="submit" value="Login" class="btn btn-primary">
+            </form>
         </div>
     </div>
-
-    <!-- jQuery -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <!-- Bootstrap -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <!-- Placeholder -->
-    <script src="{% static 'js/jquery.placeholder.min.js' %}"></script>
-    <!-- Waypoints -->
-    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-    <!-- Main JS -->
-    <script src="{% static 'js/main.js' %}"></script>
-
 </body>
 </html>

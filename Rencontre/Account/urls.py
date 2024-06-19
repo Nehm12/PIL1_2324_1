@@ -1,18 +1,20 @@
-from django.urls import include, path
 from django.contrib import admin
-from .views import signup_view
-from django.contrib.auth import views as auth_views
-from Account import views
+from django.urls import path,include
+from . import views
+from django.contrib.auth import views as v
+
+#from django.shortcuts import redirect
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('signup/', signup_view, name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('select_interests/', views.select_interests_view, name='select_interests'),
-    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),
-    path('reset/<uidb64>/<token>/', views.CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    # Autres URLs de votre application
-    # Autres URLs de votre application
-
-
+    path('', views.acc, name='acc'),
+    path('inscription/',views.ins, name='ins'),
+    path('search/',views.search_user, name='sea'),
+    path('login/',v.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/',v.LogoutView.as_view(template_name='logout.html',next_page='acc'), name='logout'),
+    path('acceuil', views.acceuil, name='acl'),
+    # path('Sugestions/', views.suggest_users, name='sug'),
+    path('chat', views.rt, name='rt'),
+    path('Suggest/', views.sug, name='gtsug')
 ]

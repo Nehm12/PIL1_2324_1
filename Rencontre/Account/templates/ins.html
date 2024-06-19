@@ -1,0 +1,264 @@
+{% comment %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <title>inscriptions</title>
+</head>
+<body>
+    <h1>INSCRIPTIONS</h1>
+    <div class="container">
+        <div class="row">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ user_form.as_p}}
+                {{profile_form.as_p }}
+                <h1>interest</h1>
+                {{ interest_form.as_p }}
+                <button type="submit">S'inscrire</button>
+                <input type="submit" value="sign up">
+            </form>
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
+
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Inscriptions</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            border-top-left-radius: 10px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        .container {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form {
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input, 
+        .form-group select {
+            width: calc(100% - 20px); /* Réduit la largeur pour aligner tous les champs */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SOULMATE</h1>
+    </div>
+    <div class="container">
+        <h2>Inscriptions</h2>
+        <div class="row justify-content-center">
+            <form action="" method="post" class="col-md-12">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">Nom d'utilisateur :</label>
+                    {{ user_form.username }}
+                    <small>Au moins 4 caractères. Lettres, chiffres et @/./+/-/_ seulement.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_email">Adresse email :</label>
+                    {{ user_form.email }}
+                    <small>Entrez une adresse email valide.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_password1">Mot de passe :</label>
+                    {{ user_form.password1 }}
+                    <small>Au moins 8 caractères. Utilisez des lettres et des chiffres.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_password2">Confirmer le mot de passe :</label>
+                    {{ user_form.password2 }}
+                    <small>Répétez le mot de passe pour vérification.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_first_name">Prénom :</label>
+                    {{ profile_form.first_name }}
+                    <small>Votre prénom.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_last_name">Nom de famille :</label>
+                    {{ profile_form.last_name }}
+                    <small>Votre nom de famille.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_interests">Intérêts :</label>
+                    {{ interest_form.interests }}
+                    <small>Quels sont vos intérêts principaux ? Séparés par des virgules.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                <input type="submit" value="Sign Up" class="btn btn-secondary">
+            </form>
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Inscriptions</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 1.5em;
+            color: #fff;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            margin-top: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form {
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .help-text {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SOULMATE</h1>
+    </div>
+    <div class="container">
+        <h2>INSCRIPTIONS</h2>
+        <div class="row justify-content-center">
+            <form action="" method="post" class="col-md-12">
+                {% csrf_token %}
+                {% for field in user_form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% for field in profile_form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <h3>Intérêts</h3>
+                {% for field in interest_form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                <input type="submit" value="Sign Up" class="btn btn-secondary">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

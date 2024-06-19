@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Suggestions de profils</title>
+</head>
+<body>
+    <h1>Suggestions de profils</h1>
+    <form method="get" action="{% url 'suggest_users' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrer</button>
+    </form>
+
+    {% if suggested_profiles %}
+        <ul>
+            {% for profile in suggested_profiles %}
+                <li>{{ profile.user.username }} - {{ profile.age }} ans - {{ profile.location }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun profil correspondant trouvé.</p>
+    {% endif %}
+
+        <p> Rechercher des utilistaurs</p>
+        <form action="{% url 'sea' %}" method="get" class="d-flex ml-3">
+            <input type="form-control me-2" type="search" name="search" placeholder="rechercher un utilisateur">
+            <button class=" btn btn-success ml-2 " type="submit" >search</button>
+        </form> 
+</body>
+
+</html>   {% endcomment %}
+
+<!-- templates/suggest.html -->
+ {% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestions de Profils</title>
+    {%block head %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    
+    <link rel="stylesheet" href="{% static 'css/sugest.css'%}">
+
+    {%endblock head %}
+</head>
+<body>
+    {% block content%}
+    <div class="container">
+        <h1>Suggestions de Profils</h1>
+        <form method="get" action="{% url 'suggest_users' %}">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Filtrer</button>
+        </form>
+        <div class="profiles">
+          
+           
+            {% if suggested_profiles %}
+               <a href='#' class='sg'> {% for profile in suggested_profiles %}
+                    <div class="profile-card">
+                        <h2>{{ profile.user.username }}</h2>
+                        <p>Âge: {{ profile.age }}</p>
+                        <p>Localisation: {{ profile.location }}</p>
+                    </div>
+                {% endfor %} </a>
+            {% else %}
+                <p>Aucun profil correspondant trouvé.</p>
+            {% endif %}
+        </div>
+        <form action="{% url 'sea' %}" method="get" class="form-inline mt-3">
+            <input type="text" class="form-control mr-2" name="search" placeholder="Rechercher un utilisateur">
+            <button type="submit" class="btn btn-success">Rechercher</button>
+        </form>
+    </div>
+    {% endblock content%}
+</body>
+</html>

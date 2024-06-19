@@ -1,0 +1,162 @@
+{% comment %} <!-- templates/search.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+
+        /* static/css/style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.list-group-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
+
+    </style>
+</head>
+<body>
+{% block content %}
+    <div class="container mt-5">
+        <h3>Résultats de recherche pour ''{{search}}''</h3>
+        <div class="list-group">
+            {% if us %}
+                {% for user in us %}
+                    <a href="#" class="list-group-item list-group-item-action">
+                        {{ user.username }} 
+                    </a>
+                {% endfor %}
+            {% else %}
+                <p>Aucun utilisateur correspondant trouvé.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html> {% endcomment %}
+
+
+<!-- templates/search.html -->
+<!-- templates/search.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de Recherche</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-inline {
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+
+        .list-group-item {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #495057;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+    <div class="container mt-5">
+        <h3 class="text-center">Résultats de Recherche pour "{{search}}"</h3>
+        <form action="{% url 'sea' %}" method="get" class="form-inline">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="Rechercher un utilisateur" value="{{ search }}">
+            </div>
+            <div class="form-group">
+                <select name="gender" class="form-control">
+                    <option value="">Tous les genres</option>
+                    <option value="M" {% if gender_filter == 'F' %}selected{% endif %}>Homme</option>
+                    <option value="F" {% if gender_filter == 'M' %}selected{% endif %}>Femme</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" name="age_min" class="form-control" placeholder="Âge min" value="{{ age_min_filter }}">
+            </div>
+            <div class="form-group">
+                <input type="number" name="age_max" class="form-control" placeholder="Âge max" value="{{ age_max_filter }}">
+            </div>
+            <div class="form-group">
+                <input type="text" name="location" class="form-control" placeholder="Localisation" value="{{ location_filter }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Filtrer</button>
+        </form>
+        <div class="list-group mt-3">
+            {% if us %}
+                {% for user in us %}
+                    <a href="#" class="list-group-item list-group-item-action">
+                        {{ user.username }}
+                    </a>
+                {% endfor %}
+            {% else %}
+                <p class="text-center mt-3">Aucun utilisateur correspondant trouvé.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

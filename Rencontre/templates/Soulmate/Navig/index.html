@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggest</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .logo {
+            text-decoration: none; /* Pour enlever le soulignement */
+            color: white; /* Pour mettre la couleur du texte en blanc */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"> <a href="index.html">SOULMATE</a></div>
+        <ul>
+            <li><a href="profile.html">Voir le profil</a></li>
+            <li><a href="#">Se déconnecter</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Suggestions</h1>
+    </header>
+    <main>
+        <div class="card" id="profileCard">
+            <img id="profileImage" src="user1.jpg" alt="User 1">
+            <div class="user-info">
+                <h2 id="userName">Jane Doe, 25</h2>
+                <p id="userInterests">Likes: Traveling, Cooking, Reading</p>
+                <div class="actions">
+                    <a href="chat.html"><button class="like">Like</button></a>
+                    <button class="dislike">Dislike</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>

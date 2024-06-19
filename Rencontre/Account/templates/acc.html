@@ -1,0 +1,74 @@
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container"><h1>Bienvenue sur notre site </h1>
+        <span>
+           
+           <a href="{% url 'ins'%}"><p>S'inscrire?</p></a>
+        </span>
+        <p>Se connecter</p> <a href="{% url 'login' %}">✔✔✔</a>
+    </div>
+    
+    <form action="{% url 'sea' %}" method="get" class="d-flex ml-3">
+        <input type="form-control me-2" type="search" name="search" placeholder="rechercher un utilisateur">
+        <button class=" btn btn-success ml-2 " type="submit" >search</button>
+    </form> 
+</body>
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Bienvenue sur SOULMATE</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .btn-primary, .btn-secondary {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+        }
+        .form-inline {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue sur SOULMATE</h1>
+        <p>Découvrez de nouvelles personnes et créez des connexions significatives</p>
+        <a href="{% url 'ins' %}" class="btn btn-primary">S'inscrire</a>
+        <a href="{% url 'login' %}" class="btn btn-secondary">Se connecter</a>
+        {% comment %} 
+        <form action="{% url 'sea' %}" method="get" class="form-inline d-flex justify-content-center">
+            <input class="form-control me-2" type="search" name="search" placeholder="Rechercher un utilisateur" aria-label="Search">
+            <button class="btn btn-success ml-2" type="submit">Search</button>
+        </form> 
+        {% endcomment %}
+    </div>
+</body>
+</html>
+

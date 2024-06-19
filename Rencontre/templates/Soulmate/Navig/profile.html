@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .logo {
+            text-decoration: none; /* Pour enlever le soulignement */
+            color: white; /* Pour mettre la couleur du texte en blanc */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"> <a href="index.html">SOULMATE</a></div>
+        <ul>
+            <li><a href="">Se déconnecter</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Profile Settings</h1>
+    </header>
+    <main>
+        <form action="index.html" class="profile-settings">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="JaneDoe25">
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="25">
+            
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio">I love traveling and meeting new people.</textarea>
+            
+            <label for="interests">Interests:</label>
+            <input type="text" id="interests" name="interests" value="Traveling, Cooking, Reading">
+            <button type="submit">Save Changes</button>
+        </form>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
