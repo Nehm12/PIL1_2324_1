@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% comment %} <!-- templates/search.html -->
 
 {% load static %}
@@ -70,7 +72,7 @@ h3 {
 <!-- templates/search.html -->
 <!-- templates/search.html -->
 
-{% load static %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -159,4 +161,47 @@ h3 {
     </div>
 {% endblock %}
 </body>
-</html>
+</html> {% endcomment %}
+
+
+{% load static %}
+{% block title %}Résultats de Recherche{% endblock %}
+{% block content %}
+<div class="container mt-5" style="width: 100%; max-width: none;">
+    <h3 class="text-center">Résultats de Recherche pour "{{search}}"</h3>
+    <form action="{% url 'sea' %}" method="get" class="form-inline justify-content-center mb-4">
+        <div class="form-group mr-2">
+            <input type="text" name="search" class="form-control" placeholder="Rechercher un utilisateur" value="{{ search }}">
+        </div>
+        <div class="form-group mr-2">
+            <select name="gender" class="form-control">
+                <option value="">Tous les genres</option>
+                <option value="M" {% if gender_filter == 'M' %}selected{% endif %}>Homme</option>
+                <option value="F" {% if gender_filter == 'F' %}selected{% endif %}>Femme</option>
+            </select>
+        </div>
+        <div class="form-group mr-2">
+            <input type="number" name="age_min" class="form-control" placeholder="Âge min" value="{{ age_min_filter }}">
+        </div>
+        <div class="form-group mr-2">
+            <input type="number" name="age_max" class="form-control" placeholder="Âge max" value="{{ age_max_filter }}">
+        </div>
+        <div class="form-group mr-2">
+            <input type="text" name="location" class="form-control" placeholder="Localisation" value="{{ location_filter }}">
+        </div>
+        <button type="submit" class="btn btn-danger">Filtrer</button>
+    </form>
+    <div class="list-group">
+        {% if us %}
+            {% for user in us %}
+                <a href="#" class="list-group-item list-group-item-action">
+                    {{ user.username }}
+                </a>
+            {% endfor %}
+        {% else %}
+            <p class="text-center mt-3">Aucun utilisateur correspondant trouvé.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

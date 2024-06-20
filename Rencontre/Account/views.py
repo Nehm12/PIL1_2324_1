@@ -1,7 +1,7 @@
 
 # Create your views here.
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import UserForm, ProfileForm, InterestForm
 from django.contrib.auth import login
@@ -9,6 +9,10 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from .models import Interest, Profile
 from django.db.models import Min, Max 
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+
 
 def acc(request):
     return render(request, 'acc.html')
@@ -106,3 +110,25 @@ def rt(request):
 
 def sug(request):
     return redirect(reverse('sugs'))
+
+
+
+
+@login_required
+def edit_profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Votre profil a été mis à jour avec succès.')
+            return redirect('edit_profile')  # Redirige vers la même page pour éviter le re-post
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {
+        'form': form,
+        'profile':profile 
+    }
+    return render(request, 'edit_profile.html', context)

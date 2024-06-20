@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% comment %} <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagerie entre deux personnes</title>
+    <style>
+        /* CSS inchangé */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        header, footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: blue;
+            color: #fff;
+        }
+        h1 {
+            margin: 0;
+        }
+        main {
+            padding: 20px;
+        }
+        .messages {
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+            overflow-y: scroll;
+        }
+        .message-history {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-end;
+        }
+        .message-content {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .received .message-content {
+            background-color: #f0f0f0;
+            align-self: flex-start;
+        }
+        .sent .message-content {
+            background-color: #007BFF;
+            color: #fff;
+            align-self: flex-end;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .message-form {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .message-form textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+        .message-form button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .message-form button:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Messagerie privée</h1>
+        </header>
+        <main>
+            <section class="messages">
+                <div class="messages" id="messages">
+                    {% for message in messages %}
+                        <div class="message {% if message.user1.username == user1.username %}sent{% else %}received{% endif %}">
+                            {{ message.content }} <br>
+                            <div class="timestamp"><small>{{ message.timestamp }}</small></div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <form id="message-form" class="message-form" method="post" action="{% url 'send_message' %}">
+                    {% csrf_token %}
+                    <textarea id="chat-message-input" name="content" placeholder="Écrivez votre message..." required></textarea>
+                    <button id="chat-message-submit" type="submit">Envoyer</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Messagerie privée</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const roomName = "{{ newroom.id }}";  // ID de la salle
+            const username = "{{ user1.username }}";  // Nom d'utilisateur de l'utilisateur actuel
+
+            // Fonction pour charger les messages
+            function loadMessages() {
+                $.ajax({
+                    url: '{% url "load_messages" %}',  // Endpoint pour charger les messages
+                    method: 'GET',
+                    data: {
+                        room_name: roomName
+                    },
+                    success: function(data) {
+                        $('#messages').empty();  // Vider les messages existants
+                        data.messages.forEach(function(message) {
+                            const messageElem = `
+                                <div class="message ${message.user1__username === username ? 'sent' : 'received'}">
+                                    ${message.content} <br>
+                                    <div class="timestamp"><small>${message.timestamp}</small></div>
+                                </div>
+                            `;
+                            $('#messages').append(messageElem);  // Ajouter chaque message à #messages
+                        });
+                        $('#messages').scrollTop($('#messages')[0].scrollHeight);  // Faire défiler vers le bas
+                    },
+                    error: function(error) {
+                        console.error('Error loading messages:', error);
+                    }
+                });
+            }
+
+            // Charger les messages toutes les 2 secondes
+            setInterval(loadMessages, 2000);
+
+            // Soumettre le formulaire pour envoyer un message via AJAX
+            $('#message-form').submit(function(e) {
+                e.preventDefault();
+                const content = $('#chat-message-input').val().trim();
+                if (content !== '') {
+                    $.ajax({
+                        url: '{% url "send_message" %}',  // Endpoint pour envoyer le message
+                        method: 'POST',
+                        data: {
+                            content: content,
+                            room_name: roomName
+                        },
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        success: function() {
+                            $('#chat-message-input').val('');  // Effacer le champ de saisie après envoi
+                            loadMessages();  // Recharger les messages après l'envoi
+                        },
+                        error: function(error) {
+                            console.error('Error sending message:', error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+ {% endcomment %}
+
+
+ <!-- chat.html -->
+
+<!-- chat.html -->
+
+
+
+{% block title %}Messagerie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <main>
+        <section class="messages">
+            <div class="message-history" id="messages">
+                {% for message in messages %}
+                    <div class="message {% if message.user1.username == user1.username %}sent{% else %}received{% endif %}">
+                        <div class="message-content">
+                            {{ message.content }}
+                            <div class="timestamp"><small>{{ message.timestamp }}</small></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <form id="message-form" class="message-form" method="post" action="{% url 'send_message' %}">
+                {% csrf_token %}
+                <textarea id="chat-message-input" name="content" placeholder="Écrivez votre message..." required></textarea>
+                <button id="chat-message-submit" type="submit">Envoyer</button>
+            </form>
+        </section>
+    </main>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    header, footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: blue;
+        color: #fff;
+    }
+    h1 {
+        margin: 0;
+    }
+    main {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .messages {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        overflow-y: scroll;
+    }
+    .message-history {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+    }
+    .message {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-end;
+    }
+    .message-content {
+        max-width: 70%;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .received .message-content {
+        background-color: #f0f0f0;
+        align-self: flex-start;
+    }
+    .sent .message-content {
+        background-color: #007BFF;
+        color: #fff;
+        align-self: flex-end;
+    }
+    .timestamp {
+        font-size: 12px;
+        color: #666;
+    }
+    .message-form {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .message-form textarea {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+    }
+    .message-form button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    .message-form button:hover {
+        background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+        .container {
+            width: 100%;
+            box-shadow: none;
+        }
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const roomName = "{{ newroom.id }}";  // ID de la salle
+        const username = "{{ user1.username }}";  // Nom d'utilisateur de l'utilisateur actuel
+
+        // Fonction pour charger les messages
+        function loadMessages() {
+            $.ajax({
+                url: '{% url "load_messages" %}',  // Endpoint pour charger les messages
+                method: 'GET',
+                data: {
+                    room_name: roomName
+                },
+                success: function(data) {
+                    $('#messages').empty();  // Vider les messages existants
+                    data.messages.forEach(function(message) {
+                        const messageElem = `
+                            <div class="message ${message.user1__username === username ? 'sent' : 'received'}">
+                                <div class="message-content">
+                                    ${message.content}
+                                    <div class="timestamp"><small>${message.timestamp}</small></div>
+                                </div>
+                            </div>
+                        `;
+                        $('#messages').append(messageElem);  // Ajouter chaque message à #messages
+                    });
+                    $('#messages').scrollTop($('#messages')[0].scrollHeight);  // Faire défiler vers le bas
+                },
+                error: function(error) {
+                    console.error('Error loading messages:', error);
+                }
+            });
+        }
+
+        // Charger les messages toutes les 2 secondes
+        setInterval(loadMessages, 2000);
+
+        // Soumettre le formulaire pour envoyer un message via AJAX
+        $('#message-form').submit(function(e) {
+            e.preventDefault();
+            const content = $('#chat-message-input').val().trim();
+            if (content !== '') {
+                $.ajax({
+                    url: '{% url "send_message" %}',  // Endpoint pour envoyer le message
+                    method: 'POST',
+                    data: {
+                        content: content,
+                        room_name: roomName
+                    },
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    success: function() {
+                        $('#chat-message-input').val('');  // Effacer le champ de saisie après envoi
+                        loadMessages();  // Recharger les messages après l'envoi
+                    },
+                    error: function(error) {
+                        console.error('Error sending message:', error);
+                    }
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

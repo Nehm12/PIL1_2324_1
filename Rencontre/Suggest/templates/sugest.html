@@ -32,48 +32,113 @@
 </html>   {% endcomment %}
 
 <!-- templates/suggest.html -->
- {% load static %}
-<!DOCTYPE html>
-<html lang="fr">
+ {% comment %} {% load static %}
+!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suggestions de Profils</title>
-    {%block head %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
-    
-    <link rel="stylesheet" href="{% static 'css/sugest.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>{% block title %}Suggestions{% endblock %}</title>
+    {% block head%}
+            <link rel="stylesheet" href="{% static 'css/sugest.css' %}">
 
-    {%endblock head %}
+    {%endblock head%}
 </head>
 <body>
-    {% block content%}
-    <div class="container">
-        <h1>Suggestions de Profils</h1>
-        <form method="get" action="{% url 'suggest_users' %}">
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Filtrer</button>
-        </form>
-        <div class="profiles">
-          
-           
-            {% if suggested_profiles %}
-               <a href='#' class='sg'> {% for profile in suggested_profiles %}
-                    <div class="profile-card">
-                        <h2>{{ profile.user.username }}</h2>
-                        <p>Âge: {{ profile.age }}</p>
-                        <p>Localisation: {{ profile.location }}</p>
-                    </div>
-                {% endfor %} </a>
-            {% else %}
-                <p>Aucun profil correspondant trouvé.</p>
-            {% endif %}
+    
+        {% block content %}
+
+        <div class="container">
+            <h1>Suggestions de Profils</h1>
+            <form method="get" action="{% url 'suggest_users' %}">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary" id='botn'>Filtrer</button>
+            </form>
+            <div class="profiles">
+              
+               
+                {% if suggested_profiles %}
+                   <a href='#' class='sg'> {% for profile in suggested_profiles %}
+                        <div class="profile-card">
+                            <h2>{{ profile.user.username }}</h2>
+                            <p>Âge: {{ profile.age }}</p>
+                            <p>Localisation: {{ profile.location }}</p>
+                        </div>
+                    {% endfor %} </a>
+                {% else %}
+                    <p>Aucun profil correspondant trouvé.</p>
+                {% endif %}
+            </div>
+            <form action="{% url 'sea' %}" method="get" class="form-inline mt-3">
+                <input type="text" class="form-control mr-2" name="search" placeholder="Rechercher un utilisateur">
+                <button type="submit" class="btn btn-success">Rechercher</button>
+            </form>
         </div>
-        <form action="{% url 'sea' %}" method="get" class="form-inline mt-3">
-            <input type="text" class="form-control mr-2" name="search" placeholder="Rechercher un utilisateur">
-            <button type="submit" class="btn btn-success">Rechercher</button>
-        </form>
-    </div>
-    {% endblock content%}
+        
+        {% endblock %}
+    
+
+   
 </body>
-</html>
+</html> {% endcomment %}
+
+
+
+{% block title %}Suggestions{% endblock %}
+{% block head%}
+    <style>
+        .profile-card a :hover{
+            background-color : #bf5f7f;
+        }
+    </style>
+{%endblock head%}
+{% block content %}
+<div class="container">
+    <h1>Suggestions de Profils</h1>
+    
+    <form method="get" action="{% url 'suggest_users' %}" style="text-align: center;">
+        <div class="form-row justify-content-center">
+            <div class="col-auto">
+                <input type="text" name="search" class="form-control mb-2 mr-sm-2" placeholder="Rechercher un utilisateur">
+            </div>
+            <div class="col-auto">
+                <select name="gender" class="form-control mb-2 mr-sm-2">
+                    <option value="">Tous les genres</option>
+                    <option value="M">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input type="number" name="age_min" class="form-control mb-2 mr-sm-2" placeholder="Âge min">
+            </div>
+            <div class="col-auto">
+                <input type="number" name="age_max" class="form-control mb-2 mr-sm-2" placeholder="Âge max">
+            </div>
+            <div class="col-auto">
+                <input type="text" name="location" class="form-control mb-2 mr-sm-2" placeholder="Localisation">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Filtrer</button>
+            </div>
+        </div>
+    </form>
+    <div class="profiles">
+        {% if suggested_profiles %}
+        <a href='#' style=" text-decoration : none; " >
+            {% for profile in suggested_profiles %}
+                <div class="profile-card" style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); margin-bottom: 20px; text-align: left;">
+                    <h2>{{ profile.user.username }}</h2>
+                    <p>Âge: {{ profile.age }}</p>
+                    <p>Localisation: {{ profile.location }}</p>
+                </div>
+            {% endfor %}
+        </a>
+            
+        {% else %}
+            <p>Aucun profil correspondant trouvé.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

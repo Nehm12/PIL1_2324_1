@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),  # Grapelli URLS
     path("admin/", admin.site.urls),
-    path('Account/', include('Account.urls')),
+    path('', include('Account.urls')),
+    # path('SOULchat/', include('SOULchat.urls')),
     path('Suggest/', include('Suggest.urls')),
     path('chat/', include('chat.urls')),
+    
 ]

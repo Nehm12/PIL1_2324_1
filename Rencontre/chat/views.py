@@ -1,48 +1,63 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from .models import Message, list_user
 from django.contrib.auth.models import User
-from django.db import models
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
+@login_required
+def Liste_users(request):
+    users = User.objects.exclude(username=request.user)
+    return render(request, 'chat/Liste.html', {'users': users})
 
+@login_required
+def room(request, username):
+    user2 = get_object_or_404(User, username=username)
+    user1 = request.user
+    newroom = list_user.objects.filter(list=user1).filter(list=user2).first()
 
-# def listU(request):
-#     lu= User.objects.all()
+    if not newroom:
+        newroom = list_user.objects.create()
+        newroom.list.add(user1, user2)
+        newroom.save()
     
-#     context = {
-#         'lu':lu,
-#     }
-     
-#     return render(request, 'list.html',context)
-# chat/views.py
+    messages = Message.objects.filter(newroom=newroom).order_by('timestamp')
 
-
-
-@login_required
-def user_list(request):
-    users = User.objects.exclude(username=request.user.username)
-    return render(request, 'chat/user_list.html', {'users': users})
-
-
-# chat/views.py
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from .models import Message
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content:
+            Message.objects.create(newroom=newroom, user1=user1, user2=user2, content=content)
+            return JsonResponse({'status': 'ok'})  # Réponse JSON pour la requête AJAX
+    
+    context = {
+        'newroom': newroom,
+        'user2': user2,
+        'messages': messages,
+    }
+    return render(request, 'chat/room.html', context)
 
 @login_required
-# def private_chat(request, username):
-#     other_user = get_object_or_404(User, username=username)
-#     messages = Message.objects.filter(
-#         (models.Q(sender=request.user) & models.Q(receiver=other_user)) |
-#         (models.Q(sender=other_user) & models.Q(receiver=request.user))
-#     ).order_by('timestamp')
-#     return render(request, 'chat/private_chat.html', {'other_user': other_user, 'messages': messages})
-def private_chat(request, username):
-    other_user = User.objects.get(username=username)
-    messages = Message.objects.filter(sender=request.user, receiver=other_user) | Message.objects.filter(sender=other_user, receiver=request.user)
-    messages = messages.order_by('timestamp')
-    return render(request, 'chat/private_chat.html', {
-        'other_user': other_user,
-        'messages': messages
-    })
+@csrf_exempt
+def load_messages(request):
+    if request.method == 'GET':
+        room_name = request.GET.get('room_name')
+        newroom = get_object_or_404(list_user, id=room_name)
+        messages = Message.objects.filter(newroom=newroom).order_by('timestamp').values('content', 'user1__username', 'timestamp')
+        return JsonResponse({'messages': list(messages)})
+
+@login_required
+@csrf_exempt
+def send_message(request):
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        room_name = request.POST.get('room_name')
+
+        newroom = get_object_or_404(list_user, id=room_name)
+        user1 = request.user
+        user2 = newroom.list.exclude(id=user1.id).first()
+        
+        if content:
+            Message.objects.create(newroom=newroom, user1=user1, user2=user2, content=content)
+            return JsonResponse({'status': 'ok'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Invalid data'})

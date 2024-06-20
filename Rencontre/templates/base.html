@@ -1,35 +1,52 @@
-{% comment %} {% load static %}
+
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>{% block title %}Acceuil{% endblock %}</title>
+    <title>{% block title %}Accueil{% endblock title %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/sugest.css' %}"> <!-- Charger le fichier CSS -->
+
+    {% endblock head %}
     <style>
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #f4f4f4; /* Couleur de fond pour le corps */
         }
         .navbar {
             background-color: #343a40;
+            padding: 1rem 0; /* Ajout de padding pour l'espace autour du titre */
+        }
+        .navbar-brand {
+            color: #fff; /* Couleur du texte du titre */
+            font-size: 1.5rem; /* Taille de police augmentée pour le titre */
+            font-weight: bold; /* Texte en gras pour le titre */
+            margin-left: 1rem; /* Espacement à gauche du titre */
         }
         .navbar-nav .nav-link {
             color: #fff;
+            margin-right: 1rem; /* Espacement entre les liens de navigation */
+            transition: color 0.3s ease; /* Transition de couleur pour un effet hover fluide */
         }
         .navbar-nav .nav-link:hover {
-            color: #ddd;
+            color: #dc3545; /* Couleur rougeâtre pour le hover */
         }
         .container {
             flex: 1;
+            margin-top: 2rem; /* Espacement au-dessus du contenu principal */
         }
         footer {
             background-color: #343a40;
             color: #fff;
             padding: 10px 0;
             text-align: center;
+            margin-top: 2rem; /* Espacement au-dessus du pied de page */
         }
         footer form {
             display: inline;
@@ -40,236 +57,21 @@
             color: #fff;
             text-decoration: underline;
             cursor: pointer;
+            transition: color 0.3s ease; /* Transition de couleur pour un effet hover fluide */
         }
         footer form button:hover {
-            color: #ddd;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">SOULMATE</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_list' %}">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sugs' %}">Suggestions</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        {% block content %}
-        {% endblock %}
-    </div>
-
-    <footer>
-
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Se déconnecter</button>
-        </form>
-    </footer>
-
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-</body>
-</html> {% endcomment %}
-
-{% comment %} {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>{% block title %}Accueil{% endblock %}</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            background-color: #343a40;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff4081;
-        }
-        .navbar-nav .nav-link {
-            color: #fff;
-            font-size: 1.2rem;
-            padding: 10px 15px;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #ff4081;
-            background-color: #495057;
-            border-radius: 5px;
-        }
-        .container {
-            flex: 1;
-            padding-top: 20px;
-        }
-        footer {
-            background-color: #343a40;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        footer form {
-            display: inline;
-        }
-        footer form button {
-            background: none;
-            border: 1px solid #ff4081;
-            color: #ff4081;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        footer form button:hover {
-            background-color: #ff4081;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">SOULMATE</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_list' %}">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sugs' %}">Suggestions</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        {% block content %}
-        {% endblock %}
-    </div>
-
-    <footer>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Se déconnecter</button>
-        </form>
-    </footer>
-
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-</body>
-</html> {% endcomment %}
-
-
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block head %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    {%endblock head%} 
-
-    <title>{% block title %}Accueil{% endblock %}</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            background-color: #343a40;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff4081;
-        }
-        .navbar-nav .nav-link {
-            color: #fff;
-            font-size: 1.2rem;
-            padding: 10px 15px;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #ff4081;
-            background-color: #495057;
-            border-radius: 5px;
-        }
-        .container {
-            flex: 1;
-            padding-top: 20px;
+            color: #dc3545; /* Couleur rougeâtre pour le hover */
         }
         .search-form {
-            display: flex;
-            align-items: center;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
         }
         .search-form .form-control {
-            margin-right: 10px;
+            width: 250px; /* Largeur du champ de recherche */
         }
         .search-form .btn {
-            background-color: #ff4081;
-            border-color: #ff4081;
-            color: #fff;
-        }
-        .search-form .btn:hover {
-            background-color: #ff1c5c;
-            border-color: #ff1c5c;
-        }
-        footer {
-            background-color: #343a40;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        footer form {
-            display: inline;
-        }
-        footer form button {
-            background: none;
-            border: 1px solid #ff4081;
-            color: #ff4081;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        footer form button:hover {
-            background-color: #ff4081;
-            color: #fff;
+            margin-left: 0.5rem; /* Espacement entre le champ de recherche et le bouton */
         }
     </style>
 </head>
@@ -282,28 +84,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                    <a class="nav-link" href="{% url 'acl' %}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="{% url 'edit_profile'%}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_list' %}">Messages</a>
+                    <a class="nav-link" href="{% url 'Liste_users' %}">Messages</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'sugs' %}">Suggestions</a>
-                </li>
-                <li class="nav-item">
-                    <form action="{% url 'sea' %}" method="get" class="form-inline search-form mt-3">
-                        <input type="text" class="form-control" name="search" placeholder="Rechercher un utilisateur">
-                        <button type="submit" class="btn btn-success">Rechercher</button>
-                    </form>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container">
         {% block content %}
         {% endblock %}
     </div>
@@ -311,9 +107,16 @@
     <footer>
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit">Se déconnecter</button>
+            <button type="submit" style="text-decoration: none;">Se déconnecter</button>
         </form>
     </footer>
+
+    <div class="search-form">
+        <form action="{% url 'sea' %}" method="get" class="form-inline" style="display: flex">
+            <input type="text" class="form-control mr-2" name="search" placeholder="Rechercher un utilisateur">
+            <button type="submit" class="btn btn-danger">Rechercher</button>
+        </form>
+    </div>
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

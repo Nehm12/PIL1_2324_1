@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% comment %} {% extends 'base.html' %}
+{% block title %}Modifier Profil{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Modifier Profil</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+    </form>
+</div>
+{% endblock %} {% endcomment %}
+
+
+{% block title %}Modifier Profil{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Mon profile </h1>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            Informations actuelles
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nom d'utilisateur:</h5>
+            <p class="card-text">{{ user.username }}</p>
+
+            <h5 class="card-title">Email:</h5>
+            <p class="card-text">{{ user.email }}</p>
+
+            <h5 class="card-title">Âge:</h5>
+            <p class="card-text">{{ profile.age }}</p>
+
+            <h5 class="card-title">Sexe:</h5>
+            <p class="card-text">{{ profile.sexe }}</p>
+
+            <h5 class="card-title">Localisation:</h5>
+            <p class="card-text">{{ profile.location }}</p>
+        </div>
+    </div>
+    <h1>Modifier mon Profil</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% comment %} <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des utilisateurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .user-list li {
+            margin-bottom: 10px;
+        }
+
+        .user-list li a {
+            display: block;
+            padding: 10px;
+            /* background-color: #007BFF; */
+            color: black;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* .user-list li a:hover {
+            background-color: #0056b3;
+        }*/
+
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                box-shadow: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Liste des utilisateurs</h1>
+        </header>
+
+        <main>
+            <section class="users">
+                <ul class="user-list">
+                    {% for user in users %}
+                        <li>
+                            <a href="{% url 'room' user.username %}">{{ user.username }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Chat Room</p>
+        </footer>
+    </div>
+</body>
+</html> {% endcomment %}
+
+<!-- user_list.html -->
+
+
+
+<!-- user_list.html -->
+
+
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Liste des utilisateurs</h1>
+    </header>
+
+    <main>
+        <section class="users">
+            <ul class="user-list">
+                {% for user in users %}
+                    <li>
+                        <a href="{% url 'room' user.username %}">{{ user.username }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+    
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header, footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #333;
+        color: #fff;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .user-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .user-list li {
+        margin-bottom: 10px;
+    }
+
+    .user-list li a {
+        display: block;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .user-list li a:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            width: 100%;
+            box-shadow: none;
+        }
+    }
+</style>
+{% endblock %}

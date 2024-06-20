@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">SOULMATE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" class='nv'>
+        <div class'part1'>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'acl' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_list' %}">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sugs' %}">Suggestions</a>
+                </li>
+        </div>
+        <div class='part2'>
+            <li class="nav-item">
+                <form action="{% url 'sea' %}" method="get" class="form-inline search-form mt-3">
+                    <input type="text" class="form-control" name="search" placeholder="Rechercher un utilisateur">
+                    <button type="submit" class="btn btn-success">Rechercher</button>
+                </form>
+            </li>                
+        </div>
+        </ul>
+    </div>
+</nav>

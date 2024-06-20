@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+EMAIL_BACKEND = 'django,core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS =True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'brixbrizindo@gmail.com'
+EMAIL_HOST_PASSWORD = 'brixmaill@ck'
+EMAIL_PORT = 587
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +38,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,21 +47,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'Account',
+    
     'Notification',
     'Suggest',
     'chat',
+    'channels',
+    # 'suit',
 ]
 
-ASGI_APPLICATION = 'chat_project.asgi.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,24 +88,33 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Rencontre.wsgi.application'
 
+ASGI_APPLICATION = 'Rencontre.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rqt',
-        'USER': 'nehm',
+        'NAME': 'projet',
+        'USER': 'root',
         'PASSWORD': '18junior',
         'HOST': 'localhost',  # ou l'adresse IP de votre serveur MySQL
         'PORT': '3306',       # port MySQL par défaut
 
     }
 }
-
 
 
 # Password validation
@@ -150,3 +162,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Authentication
 LOGIN_REDIRECT_URL = 'acl'
+
+
+# SUIT_CONFIG ={
+#     'ADMIN_NAME': 'Rencontre',
+#     'MENU': (
+#         'sites',
+#         {'app': 'auth', 'icon':'icon-lock'}
+#         {'app': 'app_name', 'icon':'icon-list'}
+        
+#     )
+# }
